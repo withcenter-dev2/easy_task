@@ -10,12 +10,14 @@ class TaskQueryOptions {
     this.orderBy = 'createdAt',
     this.orderByDescending = true,
     this.assignToContains,
+    this.createdBy,
   });
 
   final int limit;
   final String orderBy;
   final bool orderByDescending;
   final String? assignToContains;
+  final String? createdBy;
 }
 
 /// Task list view
@@ -80,6 +82,12 @@ class TaskListView extends StatelessWidget {
         taskQuery = taskQuery.where(
           "assignTo",
           arrayContains: queryOptions!.assignToContains!,
+        );
+      }
+      if (queryOptions!.createdBy != null) {
+        taskQuery = taskQuery.where(
+          "createdBy",
+          isEqualTo: queryOptions!.createdBy!,
         );
       }
 
