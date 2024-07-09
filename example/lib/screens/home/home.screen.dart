@@ -1,4 +1,10 @@
+import 'package:example/screens/task_list/task_list.screen.dart';
+import 'package:example/screens/test/test.screen.dart';
+import 'package:example/widgets/email_password_login.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fa;
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:task_management_system/task_management_system.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -9,6 +15,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  fa.User? get user => fa.FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,13 +24,54 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Home'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.push(TestScreen.routeName);
+            },
+            icon: const Icon(Icons.fact_check),
+          ),
+          IconButton(
+            onPressed: () {
+              context.push(TaskListScreen.routeName);
+            },
             icon: const Icon(Icons.checklist),
-          )
+          ),
         ],
       ),
-      body: const Column(
-        children: [],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (user == null) ...[
+              const EmailPasswordLogin(),
+            ] else ...[
+              Text("Display Name: ${user!.displayName}"),
+              Text("UID: ${user!.uid}"),
+              const SizedBox(height: 24),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Text('List of Tasks Created by Me'),
+                    Expanded(
+                      child: TaskListView(
+                        queryOptions: TaskQueryOptions(
+                          createdBy: user!.uid,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  fa.FirebaseAuth.instance.signOut();
+                },
+                child: const Text('Sign Out'),
+              ),
+            ],
+          ],
+        ),
       ),
     );
   }

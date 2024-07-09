@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -30,7 +33,10 @@ class DefaultFirebaseOptions {
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.windows:
-        return windows;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -43,38 +49,24 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB89ImXbiKosw6eTCC8S1_vY8BzGq_SFY0',
-    appId: '1:1064417466216:web:039565a60d9b0b74db28dd',
-    messagingSenderId: '1064417466216',
-    projectId: 'withcenter-test-5',
-    authDomain: 'withcenter-test-5.firebaseapp.com',
-    storageBucket: 'withcenter-test-5.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDvzaVr0SDNvkdTeDLYMnjd6ms9YMNZ1xw',
-    appId: '1:1064417466216:android:09da103897e11c70db28dd',
-    messagingSenderId: '1064417466216',
-    projectId: 'withcenter-test-5',
-    storageBucket: 'withcenter-test-5.appspot.com',
+    apiKey: 'AIzaSyDXesaf2apZcdDSzlqqQ9Ycou1s1gKNpTo',
+    appId: '1:776648753457:android:d22ede1c28e4aacb98f010',
+    messagingSenderId: '776648753457',
+    projectId: 'withcenter-test-3',
+    databaseURL: 'https://withcenter-test-3-default-rtdb.firebaseio.com',
+    storageBucket: 'withcenter-test-3.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBwRwPbyMBfsr7MgBaR2Mv7FBg1PuxsnBo',
-    appId: '1:1064417466216:ios:1bc97ac5061dd785db28dd',
-    messagingSenderId: '1064417466216',
-    projectId: 'withcenter-test-5',
-    storageBucket: 'withcenter-test-5.appspot.com',
-    iosBundleId: 'com.tms.example',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyB89ImXbiKosw6eTCC8S1_vY8BzGq_SFY0',
-    appId: '1:1064417466216:web:e287b4f4601b0551db28dd',
-    messagingSenderId: '1064417466216',
-    projectId: 'withcenter-test-5',
-    authDomain: 'withcenter-test-5.firebaseapp.com',
-    storageBucket: 'withcenter-test-5.appspot.com',
+    apiKey: 'AIzaSyA6oypaQkHZocWP6-tGCDvHAK5LziEQhMM',
+    appId: '1:776648753457:ios:b6719dfc0ea5773198f010',
+    messagingSenderId: '776648753457',
+    projectId: 'withcenter-test-3',
+    databaseURL: 'https://withcenter-test-3-default-rtdb.firebaseio.com',
+    storageBucket: 'withcenter-test-3.appspot.com',
+    androidClientId: '776648753457-2opu3g9o51193enkoek48fhpedgpmm1d.apps.googleusercontent.com',
+    iosClientId: '776648753457-iavpuc8tp91um7n5d9vdj9bu2jqi1csu.apps.googleusercontent.com',
+    iosBundleId: 'com.example.example',
   );
 }

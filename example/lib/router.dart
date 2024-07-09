@@ -1,5 +1,6 @@
 import 'package:example/screens/home/home.screen.dart';
 import 'package:example/screens/task_list/task_list.screen.dart';
+import 'package:example/screens/test/test.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,6 +18,10 @@ final router = GoRouter(
     GoRoute(
       path: TaskListScreen.routeName,
       builder: (context, state) => const TaskListScreen(),
+    ),
+    GoRoute(
+      path: TestScreen.routeName,
+      builder: (context, state) => const TestScreen(),
     ),
   ],
 );
