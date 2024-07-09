@@ -52,8 +52,9 @@ class _EmailPasswordLoginState extends State<EmailPasswordLogin> {
             ),
           ),
           TextField(
-            controller: emailController,
-            keyboardType: TextInputType.emailAddress,
+            controller: passwordController,
+            keyboardType: TextInputType.visiblePassword,
+            obscureText: true,
             decoration: const InputDecoration(
               label: Text("Password"),
               prefixIcon: Icon(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:example/screens/task_list/task_list.screen.dart';
 import 'package:example/screens/test/test.screen.dart';
 import 'package:example/widgets/email_password_login.dart';
@@ -43,7 +45,12 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (user == null) ...[
-              const EmailPasswordLogin(),
+              EmailPasswordLogin(
+                onLogin: () {
+                  if (!context.mounted) return;
+                  setState(() {});
+                },
+              ),
             ] else ...[
               Text("Display Name: ${user!.displayName}"),
               Text("UID: ${user!.uid}"),
@@ -67,7 +74,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   fa.FirebaseAuth.instance.signOut();
                 },
+                child: const Text('+ Create Task'),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () async {
+                  log('TODO: show create');
+                  // showGeneralDialog(context: context, pageBuilder: (context, a1, a2){
+                  //   return
+                  // },);
+                  if (!context.mounted) return;
+                  setState(() {});
+                },
                 child: const Text('Sign Out'),
+              ),
+              const SafeArea(
+                child: SizedBox(height: 24),
               ),
             ],
           ],
