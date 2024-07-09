@@ -1,10 +1,10 @@
 name: task_management_system
-description: "A new Flutter package project."
+description: "A TODO like task management system that allows users to create, update, delete and view tasks."
 version: 0.0.1
 homepage:
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: ">=3.4.3 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
